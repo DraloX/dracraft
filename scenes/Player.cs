@@ -25,9 +25,11 @@ public partial class Player : CharacterBody3D
             Head.RotateY(-mouseMotion.Relative.X * Sensitivity);
             Camera.RotateX(-mouseMotion.Relative.Y * Sensitivity);
 
-            var clampedCameraRotation = Camera.Rotation;
-            clampedCameraRotation.X = Mathf.Clamp(clampedCameraRotation.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-            Camera.Rotation = clampedCameraRotation;
+            Camera.Rotation = new Vector3(
+                Mathf.Clamp(Camera.Rotation.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f)),
+                Camera.Rotation.Y,
+                Camera.Rotation.Z
+            );
 
             Input.MouseMode = Input.MouseModeEnum.Captured;
         }
